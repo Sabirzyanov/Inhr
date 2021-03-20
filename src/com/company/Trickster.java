@@ -5,6 +5,13 @@ public class Trickster extends Character {
         super(name, race, height, weight, strength, dexterity, intelligence);
     }
 
+    public void sepuka(int count) {
+        if (getHp() - count > 0) {
+            setHp(getHp() - count);
+            setStrength(getStrength() + count);
+        }
+    }
+
     public void increaseDex() {
         setDexterity(getDexterity() * 2);
         System.out.println("Ваша ловкость увеличилась в 2 раза");

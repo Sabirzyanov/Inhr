@@ -11,6 +11,7 @@ public class Character {
     private int intelligence;
 
     private int hp = 1000;
+    private int coins = 0;
 
     public Character(String name, String race, double height, double weight, int strength, int dexterity, int intelligence) {
         this.name = name;
@@ -24,10 +25,21 @@ public class Character {
 
     double hit(Character c1) {
         double damage = (strength + dexterity + intelligence) * (height / weight);
-        if (c1.getHp() - (int) damage > 0) {
-            c1.setHp(c1.getHp() - (int) damage);
+        if (this.hp < 0) {
+            System.out.println("Вы мертвы!");
+            return 0.0;
         }
+        c1.getHit(damage);
         return damage;
+    }
+
+    void getHit(double damage) { // Он не должен вызываться в Main
+        if (hp - (int) damage > 0) {
+            hp -= (int) damage;
+        } else {
+            this.coins += 100;
+            System.out.println("Тот, кого вы атакуете - мертв!");
+        }
     }
 
     double hit() {
@@ -65,5 +77,13 @@ public class Character {
 
     public void setHp(int hp) {
         this.hp = hp;
+    }
+
+    public int getCoins() {
+        return coins;
+    }
+
+    public void setCoins(int coins) {
+        this.coins = coins;
     }
 }
