@@ -11,7 +11,7 @@ public class DamageSpell extends Spell {
     @Override
     public void use(Character c1) {
         if (c1.getHp() - damage > 0) {
-            c1.getHit(damage);
+            c1.takeHit(damage);
         } else {
             System.out.println("Противник уже мертв");
         }

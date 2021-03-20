@@ -11,35 +11,29 @@ public class StrongMan extends Character {
         this.shieldArmor = shieldArmor;
     }
 
-    public double ultimateHit(Character c1) {
-        return hit(c1) * 100;
+    public void ultimateHit(Character c1) {
+        c1.takeHit(hit() * 100);
     }
 
-    void block() {
+    public void block() {
         blockDamage = !blockDamage;
         if (blockDamage) {
             setDexterity(getDexterity() - 10);
         }
     }
 
-    void rage() {
-        if (getHp() < 500) {
-            isRage = true;
-        }
-    }
-
 
     @Override
-    protected void getHit(double damage) {
+    public void takeHit(double damage) {
         if (blockDamage) {
             damage /= (shieldArmor / 2.0);
         }
-        super.getHit(damage);
+        super.takeHit(damage);
     }
 
     @Override
-    double hit(Character c1) {
-        if (isRage) {
+    public double hit(Character c1) {
+        if (getHp() < 500) { // Rage
             return super.hit(c1) * 2.5;
         } else {
             return super.hit(c1);

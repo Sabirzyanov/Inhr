@@ -12,7 +12,7 @@ public class Spell {
     }
 
     public void use(Character c1) {
-        c1.getHit(0);
+        c1.takeHit(0);
     }
 
 

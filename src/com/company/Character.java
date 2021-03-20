@@ -23,26 +23,26 @@ public class Character {
         this.intelligence = intelligence;
     }
 
-    double hit(Character c1) {
+    public double hit(Character c1) {
         double damage = (strength + dexterity + intelligence) * (height / weight);
         if (this.hp < 0) {
             System.out.println("Вы мертвы!");
             return 0.0;
         }
-        c1.getHit(damage);
+        c1.takeHit(damage);
         return damage;
     }
 
-    void getHit(double damage) { // Он не должен вызываться в Main
+    public void takeHit(double damage) { // Он не должен вызываться в Main
         if (hp - (int) damage > 0) {
             hp -= (int) damage;
+            setCoins(getCoins() + 100);
         } else {
-            this.coins += 100;
             System.out.println("Тот, кого вы атакуете - мертв!");
         }
     }
 
-    double hit() {
+    public double hit() {
         System.out.println("Вы бьёте воздух!");
         return (strength + dexterity + intelligence) * (height / weight);
     }
