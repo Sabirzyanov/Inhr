@@ -1,6 +1,6 @@
 package com.company;
 
-public class Spell {
+abstract public class Spell {
     private String name;
     private int learnCost;
     private int manaCost;
@@ -11,10 +11,7 @@ public class Spell {
         this.manaCost = manaCost;
     }
 
-    public void use(Character c1) {
-        c1.takeHit(0);
-    }
-
+    abstract public void use(Character c1);
 
     public String getName() {
         return name;
